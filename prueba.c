@@ -31,14 +31,14 @@ mensionales o multidimensionales.
 programmers from making bad programs.”
 */
 
-//haz una lista de 5 estructuras que simulen productos de una tienda en linea y tenga una escripción
+
 
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 
-//estructura de los productos
 
 struct producto{
     char nombre[20];
@@ -47,7 +47,7 @@ struct producto{
     int cantidad_disponible;
 };
 
-//llena produto con pantalones, calcetas, playera, sudadera y zapatos
+
 
 int mostrar_productos(struct producto *productos){
     int i;
@@ -59,7 +59,7 @@ int mostrar_productos(struct producto *productos){
     }
 }
 
-//agrega un producto al carrito
+
 
 int agregar_producto(struct producto *productos, struct producto *carrito){
     int i;
@@ -78,7 +78,7 @@ int agregar_producto(struct producto *productos, struct producto *carrito){
     }
 }
 
-//elimina un producto del carrito
+
 
 int eliminar_producto(struct producto *productos, struct producto *carrito){
     int i;
@@ -97,7 +97,7 @@ int eliminar_producto(struct producto *productos, struct producto *carrito){
     }
 }
 
-//muestra el carrito
+
 
 int mostrar_carrito(struct producto *carrito){
     int i;
@@ -112,7 +112,7 @@ int mostrar_carrito(struct producto *carrito){
     printf("Total: %d", total);
 }
 
-//compra los productos
+
 
 int comprar_productos(struct producto *carrito){
     int i;
@@ -127,11 +127,11 @@ int comprar_productos(struct producto *carrito){
     fclose(archivo);
 }
 
-//salir
+
 
 int salir(){
  
-    //si el carrito tiene productos pregunta si en realidad quiere salir
+   
 
     if(carrito[i].cantidad_disponible > 0){
         printf("Desea salir sin comprar los productos?");
@@ -159,7 +159,7 @@ int menu(){
     printf("6. Salir");
     scanf("%d", &opcion);
 
-    //usa switch para elegir la opcion
+    
 
     switch(opcion){
         case 1:
