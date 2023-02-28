@@ -62,7 +62,7 @@ int *agregar_producto(struct producto *productos, int *carrito[6][2]){
     int id;
     scanf("%d", &id);
     printf("¿Cuantos productos desea agregar?");
-    int cantidad;
+    int cantidad = 0;
     scanf("%d", &cantidad);
     if (cantidad > productos[id].cantidad){
         printf("No hay suficientes productos");
@@ -90,23 +90,16 @@ int *eliminar_producto(struct producto *productos, int *carrito[6][2]){
 }
 
 int *mostrar_carrito(struct producto *productos, int *carrito[6][2]){
+    int total = 0;
     for(int i = 0; i < 6; i++){
         if (carrito[i][1] != 0){
-            printf("Nombre: %s", productos[i].nombre);
-            printf("Costo: %f", productos[i].precio*carrito[i][1]);
+            printf("Nombre: %s \n", productos[i].nombre);
+            int temporal = 0;
+            temporal = carrito[i][1];
+            printf("Costo: %d \n", (productos[i].precio*temporal)/4);
+            printf("\n %d", temporal);
         }
     }
-
-    float costo_total = 0;
-
-    for(int i = 0; i < 6; i++){
-        if (carrito[i][1] != 0){
-            costo_total += productos[i].precio*carrito[i][1];
-        }
-    }
-
-    printf("Costo total: %f", costo_total);
-
     return 0;
 
 }
@@ -118,7 +111,12 @@ void comprar_productos(struct producto *productos, int *carrito[6][2]){
     for(int i = 0; i < 6; i++){
         if (carrito[i][1] != 0){
             fprintf(fp, "Nombre: %s", productos[i].nombre);
-            fprintf(fp, "Costo: %f", productos[i].precio*carrito[i][1]);
+            int temporal = 0;
+            temporal = carrito[i][1];
+            int temporal2 = 0;
+            temporal2 = (productos[i].precio * temporal)/4;
+            fprintf(fp, "Costo: %d",temporal2);
+            printf("\n");
         }
     }
 
@@ -126,11 +124,13 @@ void comprar_productos(struct producto *productos, int *carrito[6][2]){
 
     for(int i = 0; i < 6; i++){
         if (carrito[i][1] != 0){
-            costo_total += productos[i].precio*carrito[i][1];
+            int temporal = 0;
+            temporal = carrito[i][1];
+            costo_total += productos[i].precio*temporal;
         }
     }
 
-    fprintf(fp, "Costo total: %f", costo_total);
+    fprintf(fp, "\nCosto total: %f", costo_total/4);
     fclose(fp);
 
 
@@ -161,64 +161,67 @@ void salir(struct producto *productos, int *carrito[6][2]){
 
 void menu(){
 
-    int opcion;
-    printf("Buenos dias ¿Que desea hacer? \n");
-
-    printf("¿Que desea hacer? \n");
-    printf("1. Mostrar productos\n");
-    printf("2. Agregar producto\n");
-    printf("3. Eliminar producto\n");
-    printf("4. Mostrar carrito\n");
-    printf("5. Comprar productos\n");
-    printf("6. Salir\n");
-
-    scanf("%d", &opcion);
-
+    
+    int costo_total = 0;
     int a = -1;
 
     int *carrito[6][2] = {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}};
 
     struct producto productos[5];
     llenar_producto(&productos);
+    // int option 
+    while(1){
 
-    switch(opcion){
-        case 1:
-            mostrar_productos(&productos);
-            break;
-        case 2:
-            a = agregar_producto(&productos, &carrito);
-            if (a == 0){
-                printf("No se pudo agregar el producto");
-            }
-            else{
-                printf("Producto agregado");
-            }
-            break;
-        case 3:
-            a = eliminar_producto(&productos, &carrito);
-            if (a == 0){
-                printf("No se pudo eliminar el producto");
-            }
-            else{
-                printf("Producto eliminado");
-            }
-            break;
-        case 4:
-            mostrar_carrito(&productos, &carrito);
-            break;
-        case 5:
-            comprar_productos(&productos, &carrito);
-            break;
-        case 6:
-            salir(&productos, &carrito);
-            break;
-        default:
-            printf("Opcion no valida\n");
-            break;
+        int opcion;
+        printf("Buenos dias ¿Que desea hacer? \n");
+
+        printf("¿Que desea hacer? \n");
+        printf("1. Mostrar productos\n");
+        printf("2. Agregar producto\n");
+        printf("3. Eliminar producto\n");
+        printf("4. Mostrar carrito\n");
+        printf("5. Comprar productos\n");
+        printf("6. Salir\n");
+
+        scanf("%d", &opcion);
+        switch(opcion){
+            case 1:
+                mostrar_productos(&productos);
+                break;
+            case 2:
+                a = agregar_producto(&productos, &carrito);
+                if (a == 0){
+                    printf("No se pudo agregar el producto");
+                }
+                else{
+                    printf("Producto agregado");
+                }
+                break;
+            case 3:
+                a = eliminar_producto(&productos, &carrito);
+                if (a == 0){
+                    printf("No se pudo eliminar el producto");
+                }
+                else{
+                    printf("Producto eliminado");
+                }
+                break;
+            case 4:
+                mostrar_carrito(&productos, &carrito);
+                break;
+            case 5:
+                comprar_productos(&productos, &carrito);
+                break;
+            case 6:
+                salir(&productos, &carrito);
+                break;
+            default:
+                printf("Opcion no valida\n");
+                break;
+        }
     }
 }
 
 int main(){
     menu();
-    return 0;
 }

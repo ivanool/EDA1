@@ -160,29 +160,30 @@ int menu(){
     scanf("%d", &opcion);
 
     
-
-    switch(opcion){
-        case 1:
-            mostrar_productos(productos);
-            break;
-        case 2:
-            agregar_producto(productos, carrito);
-            break;
-        case 3:
-            eliminar_producto(productos, carrito);
-            break;
-        case 4:
-            mostrar_carrito(carrito);
-            break;
-        case 5:
-            comprar_productos(carrito);
-            break;
-        case 6:
-            exit(0);
-            break;
-        default:
-            printf("Opcion invalida");
-            break;
+    while(1){
+        switch(opcion){
+            case 1:sdd
+                mostrar_productos(productos);
+                break;
+            case 2:
+                agregar_producto(productos, carrito);
+                break;
+            case 3:
+                eliminar_producto(productos, carrito);
+                break;
+            case 4:
+                mostrar_carrito(carrito);
+                break;
+            case 5:
+                comprar_productos(carrito);
+                break;
+            case 6:
+                exit(0);
+                break;
+            default:
+                printf("Opcion invalida");
+                break;
+        }
     }
 
 }

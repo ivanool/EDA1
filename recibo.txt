@@ -1,0 +1,3 @@
+Factura de compra
+Nombre: PizzaCosto: 20
+Costo total: 20.000000
